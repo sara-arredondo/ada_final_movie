@@ -12,11 +12,11 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-// Mapea label -> path según tu Router.jsx
 const pages = [
   { label: 'Home', path: '/' },
   { label: 'Últimos Lanzamientos', path: '/UltimosLanzamientos' },
   { label: 'Populares', path: '/PopularMovies' },
+  { label: 'Favoritas', path: '/favoritas' },
   { label: 'Buscar Película', path: '/buscador' },
 ];
 
