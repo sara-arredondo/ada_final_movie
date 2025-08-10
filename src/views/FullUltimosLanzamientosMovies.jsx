@@ -1,7 +1,7 @@
-const FullUltimosLanzamientosMovies = () => {
-  return (
-    <div>UltimosLanzamientosMovies</div>
-  )
-}
+import FullMoviesContainer from "../components/FullMoviesContainer";
 
-export default FullUltimosLanzamientosMovies
+export default function FullUltimosLanzamientosMovies() {
+  return (
+    <FullMoviesContainer endpoint="/movie/now_playing" title="Ultimos lanzamientos" />
+  );
+}
