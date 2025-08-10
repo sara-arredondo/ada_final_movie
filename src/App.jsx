@@ -5,7 +5,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function App() {
 
-
   return (
     <FavoriteContextProvider>
       <Router />

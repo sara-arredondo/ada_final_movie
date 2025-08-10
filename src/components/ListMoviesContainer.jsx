@@ -1,44 +1,67 @@
-import { useContext, useEffect, useState } from "react";
+// ListMoviesContainer.jsx
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
 import ListPopularMovies from "./ListPopularMovies";
+import ListMejorPuntuadas from "./ListMejorPuntuadas";
 
 export default function ListMoviesContainer() {
-  const [popular, setPopular] = useState([]);
+  const { items: popular, status: statusPopular } = useMovies({
+    endpoint: "/movie/popular",
+    mode: "card",
+  });
+
+  const { items: topRated, status: statusTop } = useMovies({
+    endpoint: "/movie/top_rated",
+    mode: "card",
+  });
+
   const { favorite, setFavorite } = useContext(FavoriteContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const api_key = import.meta.env.VITE_API_KEY_MOVIES;
-    axios.get("https://api.themoviedb.org/3/movie/popular", {
-      params: { api_key, language: "es-ES", region: "CO", page: 1 },
-    }).then(({data}) => {
-      const poster = (p, s="w342") => p ? `https://image.tmdb.org/t/p/${s}${p}` : null;
-      const list = (data.results ?? [])
-        .map(m => ({ id:m.id, title:m.title, poster:poster(m.poster_path) }))
-        .filter(m => m.poster);
-      setPopular(list);
-    }).catch(console.error);
-  }, []);
-
   const onCardClick = (id) => navigate(`/movie/${id}`);
-
-  const isFav = (id) => favorite.some(f => f.id === id);
-  const toggleFav = (movie) => {
-    setFavorite(prev =>
-      prev.some(f => f.id === movie.id)
-        ? prev.filter(f => f.id !== movie.id)
-        : [...prev, { id: movie.id, title: movie.title, poster: movie.poster }]
+  const isFav = (id) => favorite.some((f) => f.id === id);
+  const onToggleFav = (movie) => {
+    setFavorite((prev) =>
+      prev.some((f) => f.id === movie.id)
+        ? prev.filter((f) => f.id !== movie.id)
+        : [...prev, movie]
     );
   };
 
+  // 👉 Loading solo mientras alguno esté arrancando o cargando
+  const isLoading =
+    statusPopular === "idle" || statusPopular === "loading" ||
+    statusTop === "idle" || statusTop === "loading";
+
+  if (isLoading && !popular.length && !topRated.length) {
+    return <div className="p-6">Cargando…</div>;
+  }
+
   return (
-    <ListPopularMovies
-      movies={popular}
-      isFav={isFav}
-      onToggleFav={toggleFav}
-      onCardClick={onCardClick}
-    />
+    <>
+      {popular.length > 0 ? (
+        <ListPopularMovies
+          movies={popular}
+          isFav={isFav}
+          onToggleFav={onToggleFav}
+          onCardClick={onCardClick}
+        />
+      ) : (
+        <div className="px-4 text-red-400">No se pudieron cargar “Populares”.</div>
+      )}
+
+      {topRated.length > 0 ? (
+        <ListMejorPuntuadas
+          movies={topRated}
+          isFav={isFav}
+          onToggleFav={onToggleFav}
+          onCardClick={onCardClick}
+        />
+      ) : (
+        <div className="px-4 text-red-400">No se pudieron cargar “Mejor puntuadas”.</div>
+      )}
+    </>
   );
 }
