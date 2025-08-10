@@ -1,4 +1,7 @@
-import {Box, Grid, Card, CardActionArea, CardMedia, CardContent,Typography, IconButton, Pagination} from "@mui/material";
+import {
+  Box, Card, CardActionArea, CardMedia, CardContent,
+  Typography, IconButton, Pagination
+} from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 
@@ -23,43 +26,92 @@ export default function FullMoviesGrid({
         </Typography>
       </Box>
 
-      <Grid container spacing={2}>
+      {/* GRID: 5 columnas en desktop */}
+      <Box
+        sx={{
+          display: "grid",
+          gap: 2,
+          gridTemplateColumns: {
+            xs: "repeat(2, minmax(0, 1fr))",
+            sm: "repeat(3, minmax(0, 1fr))",
+            md: "repeat(4, minmax(0, 1fr))",
+            lg: "repeat(5, minmax(0, 1fr))",
+          },
+        }}
+      >
         {movies.map((m) => (
-          <Grid key={m.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
-            <Card sx={{ bgcolor: "grey.900", position: "relative", borderRadius: 3, overflow: "hidden" }}>
-              <CardActionArea onClick={() => onCardClick?.(m.id)}>
-                <CardMedia
-                  component="img"
-                  image={m.poster}
-                  alt={m.title}
-                  sx={{ aspectRatio: "2 / 3", objectFit: "cover" }}
-                  loading="lazy"
-                />
-              </CardActionArea>
+          <Card
+            key={m.id}
+            sx={{
+              position: "relative",
+              bgcolor: "grey.900",
+              borderRadius: 3,
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              height: "100%", // para que todas llenen su celda
+            }}
+          >
+            {/* IMAGEN con altura fija relativa al ancho (2:3) */}
+            <CardActionArea onClick={() => onCardClick?.(m.id)}>
+              <CardMedia
+                component="img"
+                image={m.poster}
+                alt={m.title}
+                sx={{ aspectRatio: "2 / 3", objectFit: "cover" }}
+                loading="lazy"
+              />
+            </CardActionArea>
 
-              <IconButton
-                size="small"
-                onClick={(e) => { e.stopPropagation(); onToggleFav?.(m); }}
-                aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
+            {/* CORAZÓN */}
+            <IconButton
+              size="small"
+              onClick={(e) => { e.stopPropagation(); onToggleFav?.(m); }}
+              aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
+              sx={{
+                position: "absolute", top: 8, right: 8,
+                bgcolor: "rgba(0,0,0,.6)", color: "#fff",
+                "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
+              }}
+            >
+              {isFav(m.id) ? <Favorite htmlColor="red" /> : <FavoriteBorder />}
+            </IconButton>
+
+            {/* CONTENIDO con altura controlada */}
+            <CardContent
+              sx={{
+                py: 1.5,
+                display: "flex",
+                flexDirection: "column",
+                gap: 0.5,
+                // alto fijo del bloque de contenido para que NO cambie la altura total
+                minHeight: 80,
+                maxHeight: 80,
+              }}
+            >
+              {/* Título: muestra hasta donde alcance, luego “…” sin crecer la card */}
+              <Typography
+                variant="body2"
                 sx={{
-                  position: "absolute", top: 8, right: 8,
-                  bgcolor: "rgba(0,0,0,.6)", color: "#fff",
-                  "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
+                  display: "-webkit-box",
+                  WebkitLineClamp: { xs: 2, md: 2 }, // 2 líneas (puedes subir a 3 si quieres)
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                  // 2 líneas ≈ 2.6em de alto (ajusta si cambias el tamaño de fuente)
+                  minHeight: "2.6em",
                 }}
+                title={m.title}
               >
-                {isFav(m.id) ? <Favorite htmlColor="red" /> : <FavoriteBorder />}
-              </IconButton>
+                {m.title}
+              </Typography>
 
-              <CardContent sx={{ py: 1.5 }}>
-                <Typography variant="body2" noWrap>{m.title}</Typography>
-                <Typography variant="caption" sx={{ opacity: 0.7 }}>
-                  {m.year} · ⭐ {m.vote?.toFixed?.(1) ?? "–"}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+              <Typography variant="caption" sx={{ opacity: 0.7, whiteSpace: "nowrap" }}>
+                {m.year ?? ""}{m.year ? " · " : ""}⭐ {m.vote?.toFixed?.(1) ?? "–"}
+              </Typography>
+            </CardContent>
+          </Card>
         ))}
-      </Grid>
+      </Box>
 
       {safeTotal > 1 && (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>

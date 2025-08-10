@@ -1,9 +1,7 @@
+import FullMoviesContainer from "../components/FullMoviesContainer";
 
-
-const FullPopularMovies = () => {
+export default function FullPopularMovies() {
   return (
-    <div>FullPopularMovies</div>
-  )
+    <FullMoviesContainer endpoint="/movie/popular" title="Películas populares" />
+  );
 }
-
-export default FullPopularMovies

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
-import FullMoviesGrid from "../components/FullMoviesGrid";
+import FullMoviesGrid from "./FullMoviesGrid";
 
 
 export default function FullMoviesContainer({ endpoint, title, extraParams = {} }) {
@@ -25,23 +25,23 @@ export default function FullMoviesContainer({ endpoint, title, extraParams = {} 
     setFavorite((prev) =>
       prev.some((f) => f.id === movie.id)
         ? prev.filter((f) => f.id !== movie.id)
-        : [...prev, { id: movie.id, title: movie.title, poster: movie.poster }]
+        : [...prev, { id: movie.id, title: movie.title, poster: movie.poster, year: movie.year, vote: movie.vote }]
     );
   };
 
   if (status === "idle" || status === "loading") return <div className="p-6">Cargando…</div>;
   if (status === "error") return <div className="p-6 text-red-500">No se pudo cargar: {error?.message ?? "Error"}</div>;
 
-  return (
-    <FullMoviesGrid
-      title={title}
-      movies={movies}
-      page={meta.page ?? page}
-      totalPages={meta.total_pages ?? 1}
-      onPageChange={onPageChange}
-      onCardClick={onCardClick}
-      isFav={isFav}
-      onToggleFav={onToggleFav}
-    />
-  );
+ return (
+  <FullMoviesGrid
+    title={title}
+    movies={movies}
+    page={meta?.page ?? page}
+    totalPages={meta?.total_pages ?? 1}
+    onPageChange={onPageChange}
+    onCardClick={onCardClick}
+    isFav={isFav}
+    onToggleFav={onToggleFav}
+  />
+);
 }

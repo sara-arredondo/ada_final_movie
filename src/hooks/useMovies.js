@@ -6,7 +6,7 @@ const img = (p, size = "w1280") => (p ? `https://image.tmdb.org/t/p/${size}${p}`
 
 const mapToHero = (results) =>
   results
-    .filter((m) => m.backdrop_path) // 16:9
+    .filter((m) => m.backdrop_path)
     .map((m) => ({
       id: m.id,
       src: img(m.backdrop_path, "w1280"),
@@ -29,6 +29,7 @@ export default function useMovies({ endpoint, params = {}, mode = "card" }) {
   const [items, setItems] = useState([]);
   const [status, setStatus] = useState("idle");   // 'idle' | 'loading' | 'ready' | 'error'
   const [error, setError] = useState(null);
+  const [meta, setMeta] = useState({ page: 1, total_pages: 1, total_results: 0 });
 
   const api_key = import.meta.env.VITE_API_KEY_MOVIES;
 
@@ -40,13 +41,7 @@ export default function useMovies({ endpoint, params = {}, mode = "card" }) {
       setError(null);
       try {
         const { data } = await axios.get(`${BASE_URL}${endpoint}`, {
-          params: {
-            api_key,
-            language: "es-ES",
-            region: "CO",
-            page: 1,
-            ...params,
-          },
+          params: { api_key, language: "es-ES", region: "CO", page: 1, ...params },
         });
 
         const res = data?.results ?? [];
@@ -54,6 +49,11 @@ export default function useMovies({ endpoint, params = {}, mode = "card" }) {
 
         if (!alive) return;
         setItems(mapped);
+        setMeta({
+          page: data?.page ?? 1,
+          total_pages: Math.min(data?.total_pages ?? 1, 500),
+          total_results: data?.total_results ?? 0,
+        });
         setStatus("ready");
       } catch (e) {
         if (!alive) return;
@@ -63,11 +63,9 @@ export default function useMovies({ endpoint, params = {}, mode = "card" }) {
       }
     })();
 
-    return () => {
-      alive = false;
-    };
+    return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint, api_key, mode, JSON.stringify(params)]);
 
-  return { items, status, error };
+  return { items, status, error, meta };
 }
