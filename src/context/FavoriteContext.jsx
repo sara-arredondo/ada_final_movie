@@ -1,16 +1,35 @@
+import { createContext, useState, useEffect } from "react";
 
-import { createContext, useState } from "react";
+export const FavoriteContext = createContext({
+  favorite: [],
+  // placeholder para evitar errores si alguien lo usa fuera del provider
+  setFavorite: () => {},
+});
 
-export const FavoriteContext = createContext()
+export default function FavoriteContextProvider({ children }) {
+  // 1) Estado primero
+  const [favorite, setFavorite] = useState(() => {
+    try {
+      const raw = typeof window !== "undefined" ? localStorage.getItem("favorites") : null;
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  });
 
-export default function FavoriteContextProvider ({children}) {
+  // 2) Persistir en localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem("favorites", JSON.stringify(favorite));
+    } catch {
+      // ignore: modo privado / sin espacio
+    }
+  }, [favorite]);
 
-    const [favorite, setFavorite] = useState([])
- 
-    const data = {
-        favorite,
-        setFavorite,
-    };
 
-    return <FavoriteContext.Provider value={data}>{children}</FavoriteContext.Provider>
+  return (
+    <FavoriteContext.Provider value={{ favorite, setFavorite }}>
+      {children}
+    </FavoriteContext.Provider>
+  );
 }
