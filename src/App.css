@@ -1,0 +1,34 @@
+.carousel .slide .legend{
+  background: transparent;
+  box-shadow: none;
+  color: #fff;
+
+  right: 2rem; 
+  top: 10rem;            /* mueve el bloque hacia la izquierda */
+  transform: none;        /* evita el centrado por translateX */
+  text-align: left;
+  max-width: 900px;  
+}
+
+/* Este wrapper se alinea a la izquierda dentro de la legend centrada */
+.hero-legend{
+  display: inline-block;         /* se comporta como “bloque” centrable */
+  text-align: left;              /* texto a la izquierda */
+  margin-left: 1rem;             /* separarlo del borde */
+  max-width: min(70ch, 60%);     /* ancho legible (ajusta a gusto) */
+}
+
+/* Tamaños de texto */
+.hero-title{
+  display: block;
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 32px);
+  margin-bottom: .25rem;
+}
+
+.hero-desc{
+  display: block;
+  font-size: clamp(12px, 1.4vw, 16px);
+  line-height: 1.4;
+  opacity: .9;
+}
