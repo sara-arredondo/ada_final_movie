@@ -10,7 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import logoUrl from "../assets/logo.svg";
+
 
 const pages = [
   { label: 'Home', path: '/' },
@@ -20,6 +21,7 @@ const pages = [
   { label: 'Buscar Película', path: '/buscador' },
 ];
 
+
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -28,28 +30,39 @@ function NavBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-
-          {/* Logo desktop -> a Home */}
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+      <Container maxWidth="xl" sx={{backgroundColor: "#272727"}}>
+        <Toolbar
+          disableGutters
+          sx={{ minHeight: { xs: 64, md: 88 }, alignItems: "center" }}
+        >
+        
+        <Box
+          component={Link}
+          to="/"
+          sx={{
+            display: { xs: "none", md: "flex" },
+            alignItems: "center",
+            gap: 1.25,                // espacio entre icono y texto
+            mr: 2,
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <Box component="img" src={logoUrl} alt="PICK" sx={{ width: 40, height: 40 }} />
           <Typography
-            variant="h6"
-            noWrap
-            component={Link}
-            to="/"
+            component="span"
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              fontFamily: '"Sankofa Display", sans-serif',
+              fontSize: 32,           // ajusta a gusto
+              fontWeight: 600,
+              letterSpacing: ".12rem",
+              color: "#fff4b6",
+              lineHeight: 1,          // clave para alinear con el SVG
             }}
           >
-            LOGO
+            PICK
           </Typography>
+        </Box>
 
           {/* Menú móvil (hamburger) */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -88,7 +101,9 @@ function NavBar() {
           </Box>
 
           {/* Logo móvil -> a Home */}
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Box component={Link} to="/" sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
+            <Box component="img" src={logoUrl} alt="PICK" sx={{ width: 24, height: 24 }} />
+          </Box>
           <Typography
             variant="h5"
             noWrap
@@ -96,20 +111,21 @@ function NavBar() {
             to="/"
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', md: 'none' },   // SOLO MÓVIL
               flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
+              fontFamily: '"Sankofa Display", sans-serif',
+              fontWeight: 400,
+              letterSpacing: '.1rem',
+              color: '#fff4b6',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            PICK
           </Typography>
 
+
           {/* Menú desktop */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },  backgroundColor: "#272727" }}>
             {pages.map((p) => (
               <Button
                 key={p.path}
