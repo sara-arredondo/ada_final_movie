@@ -6,6 +6,7 @@ import FullUltimosLanzamientosMovies from "../views/FullUltimosLanzamientosMovie
 import FullPopularMovies from "../views/FullPopularMovies.jsx";    
 import DetailMovie from "../views/DetailMovie";
 import FavoritesMovies from "../views/FavoritesMovies.jsx";
+import Buscador from "../views/Buscador.jsx";
     
 
 
@@ -19,6 +20,7 @@ export default function Router() {
         <Route path="/UltimosLanzamientos" element={<FullUltimosLanzamientosMovies />} />
         <Route path="/favoritos" element={<FavoritesMovies />} />
         <Route path="/movie/:id" element={<DetailMovie />} />
+        <Route path="/buscador" element={<Buscador />} />
       </Routes>
       <Footer />
     </BrowserRouter>
