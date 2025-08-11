@@ -11,16 +11,21 @@ import "swiper/css/navigation";
 export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggleFav, onCardClick }) {
   return (
     <Box component="section" sx={{ py: 3 }}>
-      <Box sx={{ px: 2, display: "flex", justifyContent: "space-between", mb: 1 }}>
-        <Typography variant="h6" fontWeight={600}>Mejor puntuadas</Typography>
+      <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
+        <Typography variant="h6" sx={{
+            fontWeight: 600,        // más negrita
+            color: "#fff4b6",       // color personalizado
+            textTransform: "uppercase", // opcional, mayúsculas
+            letterSpacing: "1px",   // espacio entre letras
+          
+        }}>
+          Mejor puntuadas</Typography>
       </Box>
-
+ 
       <Box
         sx={{
           mx: 2,
           p: { xs: 1, sm: 2 },
-          bgcolor: "grey.900",
-          borderRadius: 3,
           overflow: "hidden",
           position: "relative",
           "& .swiper-button-prev, & .swiper-button-next": { color: "#fff" },
@@ -46,9 +51,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
                   sx={{
                     aspectRatio: "2 / 3",
                     width: "100%",
-                    borderRadius: 2,
                     overflow: "hidden",
-                    bgcolor: "grey.800",
                     cursor: "pointer",
                     "& img": {
                       display: "block",
@@ -69,11 +72,11 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
                   aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
                   sx={{
                     position: "absolute", top: 8, right: 8,
-                    bgcolor: "rgba(0,0,0,.6)", color: "#fff",
+                    bgcolor: "#272727", color: "#fff",
                     "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
                   }}
                 >
-                  {isFav(m.id) ? <Favorite htmlColor="red" /> : <FavoriteBorder />}
+                  {isFav(m.id) ? <Favorite htmlColor="#fff4b6" /> : <FavoriteBorder />}
                 </IconButton>
 
                 <Typography variant="body2" sx={{ mt: 1 }} noWrap>{m.title}</Typography>
