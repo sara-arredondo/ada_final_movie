@@ -17,8 +17,12 @@ export default function Hero ({ slides = [] }) {
         useKeyboardArrows
       >
         {slides.map((s) => (
-          <div key={s.id}>
-            <img src={s.src} alt={s.title} loading="lazy" />
+          <div key={s.id} className="hero-slide">
+            <img src={s.src} alt={s.title} loading="lazy" style={{
+              maxHeight: "700px",   // 🔹 alto máximo del carrusel
+              width: "100%",
+              objectFit: "cover"
+      }} />
             {/* La leyenda aparece SOBRE la imagen por defecto */}
             <p className="legend" sytle={{ background: "transparent"}}>
               <span className="hero-legend">

@@ -1,3 +1,30 @@
+.hero-slide {
+  position: relative;
+}
+
+.hero-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-slide::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  z-index: 20; /* por encima de la imagen */
+  pointer-events: none;
+}
+
+.hero-slide .legend {
+  position: relative;
+  z-index: 999; /* por encima del gradiente */
+}
+
 .carousel .slide .legend{
   background: transparent;
   box-shadow: none;
