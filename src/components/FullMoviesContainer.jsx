@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
 import FullMoviesGrid from "./FullMoviesGrid";
+import GridSkeletonMovies from "../components/GridSkeletonMovies";
 
 
 export default function FullMoviesContainer({ endpoint, title, extraParams = {} }) {
@@ -29,8 +30,10 @@ export default function FullMoviesContainer({ endpoint, title, extraParams = {} 
     );
   };
 
-  if (status === "idle" || status === "loading") return <div className="p-6">Cargando…</div>;
-  if (status === "error") return <div className="p-6 text-red-500">No se pudo cargar: {error?.message ?? "Error"}</div>;
+    if (status === "idle" || status === "loading") {
+        return <GridSkeletonMovies title={title} items={10} />;
+    }
+    if (status === "error") return <div className="p-6 text-red-500">No se pudo cargar: {error?.message ?? "Error"}</div>;
 
  return (
   <FullMoviesGrid

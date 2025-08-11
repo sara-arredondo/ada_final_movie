@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import FullMoviesGrid from "../components/FullMoviesGrid";
 import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
+import GridSkeletonMovies from "../components/GridSkeletonMovies.jsx";
 
 // Hook pequeño para debouncing
 function useDebouncedValue(value, delay = 400) {
@@ -56,7 +57,7 @@ export default function Buscador() {
           Escribe al menos 2 caracteres para buscar.
         </Typography>
       ) : status === "idle" || status === "loading" ? (
-        <Typography sx={{ mt: 2 }}>Buscando…</Typography>
+        <GridSkeletonMovies title={`Resultados para “${debouncedQuery || query}”`} items={10} />
       ) : status === "error" ? (
         <Typography sx={{ mt: 2, color: "error.main" }}>
           No se pudo buscar: {error?.message ?? "Error"}
