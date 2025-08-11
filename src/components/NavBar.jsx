@@ -33,7 +33,7 @@ function NavBar() {
       <Container maxWidth="xl" sx={{backgroundColor: "#272727"}}>
         <Toolbar
           disableGutters
-          sx={{ minHeight: { xs: 64, md: 88 }, alignItems: "center" }}
+          sx={{ minHeight: { xs: 50, md: 75 }, alignItems: "center" }}
         >
         
         <Box
@@ -48,7 +48,7 @@ function NavBar() {
             color: "inherit",
           }}
         >
-          <Box component="img" src={logoUrl} alt="PICK" sx={{ width: 40, height: 40 }} />
+          <Box component="img" src={logoUrl} alt="PICK" sx={{ width: 38, height: 38 }} />
           <Typography
             component="span"
             sx={{
@@ -125,14 +125,14 @@ function NavBar() {
 
 
           {/* Menú desktop */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' },  backgroundColor: "#272727" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', }}>
             {pages.map((p) => (
               <Button
                 key={p.path}
                 component={Link}
                 to={p.path}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: '#fff4b6', display: 'block',  textTransform: 'none' }}
               >
                 {p.label}
               </Button>
