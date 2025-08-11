@@ -7,6 +7,7 @@ import FullPopularMovies from "../views/FullPopularMovies.jsx";
 import DetailMovie from "../views/DetailMovie";
 import FavoritesMovies from "../views/FavoritesMovies.jsx";
 import Buscador from "../views/Buscador.jsx";
+import DetailMovieContainer from "../components/DetailMovieContainer";
     
 
 
@@ -19,7 +20,7 @@ export default function Router() {
         <Route path="/PopularMovies" element={<FullPopularMovies />} />
         <Route path="/UltimosLanzamientos" element={<FullUltimosLanzamientosMovies />} />
         <Route path="/favoritos" element={<FavoritesMovies />} />
-        <Route path="/movie/:id" element={<DetailMovie />} />
+        <Route path="/movie/:id" element={<DetailMovieContainer />} />
         <Route path="/buscador" element={<Buscador />} />
       </Routes>
       <Footer />
