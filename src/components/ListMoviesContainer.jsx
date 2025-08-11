@@ -5,6 +5,7 @@ import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
 import ListPopularMovies from "./ListPopularMovies";
 import ListMejorPuntuadas from "./ListMejorPuntuadas";
+import GridSkeletonMovies from "../components/GridSkeletonMovies.jsx";
 
 export default function ListMoviesContainer() {
   const { items: popular, status: statusPopular } = useMovies({
@@ -36,7 +37,7 @@ export default function ListMoviesContainer() {
     statusTop === "idle" || statusTop === "loading";
 
   if (isLoading && !popular.length && !topRated.length) {
-    return <div className="p-6">Cargando…</div>;
+    return <GridSkeletonMovies  items={10} />;
   }
 
   return (
