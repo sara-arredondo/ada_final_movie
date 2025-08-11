@@ -16,7 +16,7 @@ const pages = [
   { label: 'Home', path: '/' },
   { label: 'Últimos Lanzamientos', path: '/UltimosLanzamientos' },
   { label: 'Populares', path: '/PopularMovies' },
-  { label: 'Favoritas', path: '/favoritas' },
+  { label: 'Favoritos', path: '/favoritos' },
   { label: 'Buscar Película', path: '/buscador' },
 ];
 
