@@ -20,8 +20,8 @@ export default function FullMoviesGrid({
   return (
     <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727" }}>
       <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2 }}>
-        <Typography variant="h5" fontWeight={700}>{title}</Typography>
-        <Typography variant="body2" sx={{ opacity: 0.7 }}>
+        <Typography variant="h5" sx={{color:"#fff4b6", fontWeight:700}}>{title}  </Typography>
+        <Typography variant="body2" sx={{ opacity: 0.7, color:"#fff4b6"}}>
           Página {page} de {safeTotal}
         </Typography>
       </Box>
@@ -50,7 +50,6 @@ export default function FullMoviesGrid({
               height: "100%", // para que todas llenen su celda
               borderRadius: 0,
               bgcolor: "#272727",
-              border: "1px solid #fff4b6",
               color: "#fff",
             }}
           >
@@ -90,6 +89,8 @@ export default function FullMoviesGrid({
                 // alto fijo del bloque de contenido para que NO cambie la altura total
                 minHeight: 80,
                 maxHeight: 80,
+                border: "1px solid #fff4b6", // 🔹 borde solo en el texto
+                borderTop: "none",           // 🔹 sin borde arriba
               }}
             >
               {/* Título: muestra hasta donde alcance, luego “…” sin crecer la card */}
@@ -108,9 +109,20 @@ export default function FullMoviesGrid({
                 {m.title}
               </Typography>
 
-              <Typography variant="caption" sx={{ opacity: 0.7, whiteSpace: "nowrap" }}>
-                {m.year ?? ""}{m.year ? " · " : ""} ★ {m.vote?.toFixed?.(1) ?? "–"}
-              </Typography>
+             <Box sx={{ display: "flex", justifyContent: "space-between", mt: "2" }}>
+                <Typography
+                    variant="caption"
+                    sx={{ opacity: 0.7, whiteSpace: "nowrap" }}
+                >
+                    {m.year ?? ""}
+                </Typography>
+                <Typography
+                    variant="caption"
+                    sx={{ opacity: 0.7, whiteSpace: "nowrap" }}
+                >
+                    ★ {m.vote?.toFixed?.(1) ?? "–"}
+                </Typography>
+             </Box>
             </CardContent>
           </Card>
         ))}

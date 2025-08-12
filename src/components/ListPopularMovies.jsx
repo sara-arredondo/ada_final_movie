@@ -20,7 +20,6 @@ export default function ListPopularMovies({
         <Typography variant="h6" sx={{
             fontWeight: 600,        // más negrita
             color: "#fff4b6",       // color personalizado
-            letterSpacing: "1px",   // espacio entre letras
         }}>Últimos lanzamientos</Typography>
         
       </Box>

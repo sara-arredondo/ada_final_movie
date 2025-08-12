@@ -14,10 +14,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
       <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
         <Typography variant="h6" sx={{
             fontWeight: 600,        // más negrita
-            color: "#fff4b6",       // color personalizado
-           
-            letterSpacing: "1px",   // espacio entre letras
-          
+            color: "#fff4b6",       // color personalizado          
         }}>
           Mejor puntuadas</Typography>
       </Box>
