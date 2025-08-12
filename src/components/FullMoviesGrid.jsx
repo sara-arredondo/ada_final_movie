@@ -137,6 +137,18 @@ export default function FullMoviesGrid({
             color="primary"
             siblingCount={1}
             boundaryCount={1}
+            sx={{
+                "& .MuiPaginationItem-root": {
+                color: "#fff", // color de texto normal
+                },
+                "& .Mui-selected": {
+                backgroundColor: "#fff4b6", // fondo del seleccionado
+                color: "#272727",           // texto del seleccionado
+                },
+                "& .MuiPaginationItem-root:hover": {
+                backgroundColor: "rgba(255, 244, 182, 0.2)", // hover suave
+                }
+            }}
           />
         </Box>
       )}
