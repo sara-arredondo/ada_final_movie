@@ -15,7 +15,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
         <Typography variant="h6" sx={{
             fontWeight: 600,        // más negrita
             color: "#fff4b6",       // color personalizado
-            textTransform: "uppercase", // opcional, mayúsculas
+           
             letterSpacing: "1px",   // espacio entre letras
           
         }}>

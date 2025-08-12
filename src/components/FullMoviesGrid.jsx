@@ -18,7 +18,7 @@ export default function FullMoviesGrid({
   const safeTotal = Math.min(totalPages || 1, 500);
 
   return (
-    <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3 }}>
+    <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727" }}>
       <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2 }}>
         <Typography variant="h5" fontWeight={700}>{title}</Typography>
         <Typography variant="body2" sx={{ opacity: 0.7 }}>
@@ -44,12 +44,14 @@ export default function FullMoviesGrid({
             key={m.id}
             sx={{
               position: "relative",
-              bgcolor: "grey.900",
-              borderRadius: 3,
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
               height: "100%", // para que todas llenen su celda
+              borderRadius: 0,
+              bgcolor: "#272727",
+              border: "1px solid #fff4b6",
+              color: "#fff",
             }}
           >
             {/* IMAGEN con altura fija relativa al ancho (2:3) */}
@@ -70,11 +72,12 @@ export default function FullMoviesGrid({
               aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
               sx={{
                 position: "absolute", top: 8, right: 8,
-                bgcolor: "rgba(0,0,0,.6)", color: "#fff",
+               
+                color: "#fff",
                 "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
               }}
             >
-              {isFav(m.id) ? <Favorite htmlColor="red" /> : <FavoriteBorder />}
+              {isFav(m.id) ? <Favorite htmlColor="#fff4b6" /> : <FavoriteBorder />}
             </IconButton>
 
             {/* CONTENIDO con altura controlada */}
@@ -106,7 +109,7 @@ export default function FullMoviesGrid({
               </Typography>
 
               <Typography variant="caption" sx={{ opacity: 0.7, whiteSpace: "nowrap" }}>
-                {m.year ?? ""}{m.year ? " · " : ""}⭐ {m.vote?.toFixed?.(1) ?? "–"}
+                {m.year ?? ""}{m.year ? " · " : ""} ★ {m.vote?.toFixed?.(1) ?? "–"}
               </Typography>
             </CardContent>
           </Card>

@@ -15,12 +15,11 @@ export default function ListPopularMovies({
   onCardClick,
 }) {
   return (
-    <Box component="section" sx={{ py: 3 }}>
+    <Box component="section" sx={{ py: 3, mt: 4 }}>
       <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
         <Typography variant="h6" sx={{
             fontWeight: 600,        // más negrita
             color: "#fff4b6",       // color personalizado
-            textTransform: "uppercase", // opcional, mayúsculas
             letterSpacing: "1px",   // espacio entre letras
         }}>Últimos lanzamientos</Typography>
         

@@ -132,7 +132,16 @@ function NavBar() {
                 component={Link}
                 to={p.path}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#fff4b6', display: 'block',  textTransform: 'none' }}
+                sx={{ my: 2,
+                  color: '#fff4b6',
+                  display: 'block', 
+                  textTransform: 'none',
+                  fontWeight: 300,
+                  border: "1px solid #fff4b6",
+                  borderRadius: '20px',        // 🔹 redondeado (puedes ajustar)
+                  px: 2,                        // padding horizontal extra
+                  mx: 0.5,                      // separación entre botones
+                }}
               >
                 {p.label}
               </Button>
