@@ -69,7 +69,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
                   aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
                   sx={{
                     position: "absolute", top: 8, right: 8,
-                    bgcolor: "#272727", color: "#fff",
+                    color: "#fff4b6",
                     "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
                   }}
                 >

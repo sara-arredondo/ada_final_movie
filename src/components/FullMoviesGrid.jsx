@@ -18,8 +18,8 @@ export default function FullMoviesGrid({
   const safeTotal = Math.min(totalPages || 1, 500);
 
   return (
-    <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727" }}>
-      <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2 }}>
+    <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727", pt: 7}}>
+      <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2, mb: 4 }}>
         <Typography variant="h5" sx={{color:"#fff4b6", fontWeight:700}}>{title}  </Typography>
         <Typography variant="body2" sx={{ opacity: 0.7, color:"#fff4b6"}}>
           Página {page} de {safeTotal}

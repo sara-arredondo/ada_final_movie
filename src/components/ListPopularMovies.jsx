@@ -83,8 +83,7 @@ export default function ListPopularMovies({
                     position: "absolute",
                     top: 8,
                     right: 8,
-                    bgcolor: "rgba(0,0,0,.6)",
-                    color: "#fff",
+                    color: "#fff4b6",
                     "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
                   }}
                 >
