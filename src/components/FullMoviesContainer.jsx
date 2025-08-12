@@ -1,14 +1,16 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
-import FullMoviesGrid from "./FullMoviesGrid";
+
 import GridSkeletonMovies from "../components/GridSkeletonMovies";
+import FullMoviesGrid from "./FullMoviesGrid";
+import useMovies from "../hooks/useMovies";
 
 
 export default function FullMoviesContainer({ endpoint, title, extraParams = {} }) {
-  const [page, setPage] = useState(1);
 
+  const [page, setPage] = useState(1);
+  
   const { items: movies, status, error, meta } = useMovies({
     endpoint,
     mode: "card",

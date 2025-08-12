@@ -3,9 +3,11 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
+
 import ListPopularMovies from "./ListPopularMovies";
 import ListMejorPuntuadas from "./ListMejorPuntuadas";
 import GridSkeletonMovies from "../components/GridSkeletonMovies.jsx";
+
 
 export default function ListMoviesContainer() {
   const { items: popular, status: statusPopular } = useMovies({
