@@ -35,29 +35,36 @@ function NavBar() {
           disableGutters
           sx={{ minHeight: { xs: 50, md: 75 }, alignItems: "center" }}
         >
-        
-        <Box
+                
+          <Box
           component={Link}
           to="/"
           sx={{
-            display: { xs: "none", md: "flex" },
+            display: "flex",
             alignItems: "center",
-            gap: 1.25,                // espacio entre icono y texto
+            gap: 1.25,
             mr: 2,
             textDecoration: "none",
             color: "inherit",
           }}
         >
-          <Box component="img" src={logoUrl} alt="PICK" sx={{ width: 38, height: 38 }} />
+          <Box
+            component="img"
+            src={logoUrl}
+            alt="PICK"
+            sx={{ width: { xs: 28, md: 48 }, height: { xs: 28, md: 48 } }}
+          />
           <Typography
             component="span"
             sx={{
-              fontFamily: '"Sankofa Display", sans-serif',
-              fontSize: 32,           // ajusta a gusto
-              fontWeight: 600,
-              letterSpacing: ".12rem",
-              color: "#fff4b6",
-              lineHeight: 1,          // clave para alinear con el SVG
+              fontFamily: '"Bebas Neue", sans-serif', // ← corregido
+              fontSize: { xs: 20, md: 48 },           // ← más grande y responsivo
+              fontWeight: 700,
+              color: "#f35a5d",
+              lineHeight: 1,                           // ← centra con el logo
+              letterSpacing: ".04em",
+              display: "flex",
+              alignItems: "center",
             }}
           >
             PICK
@@ -113,10 +120,9 @@ function NavBar() {
               mr: 2,
               display: { xs: 'flex', md: 'none' },   // SOLO MÓVIL
               flexGrow: 1,
-              fontFamily: '"Sankofa Display", sans-serif',
+              fontFamily: '"Bebas Neue", sans-serif', // ← corregido
               fontWeight: 400,
-              letterSpacing: '.1rem',
-              color: '#fff4b6',
+              color: '#f35a5d',
               textDecoration: 'none',
             }}
           >
@@ -133,11 +139,11 @@ function NavBar() {
                 to={p.path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2,
-                  color: '#fff4b6',
+                  color: '#f35a5d',
                   display: 'block', 
                   textTransform: 'none',
                   fontWeight: 300,
-                  border: "1px solid #fff4b6",
+                  border: "1px solid #f35a5d",
                   borderRadius: '20px',        // 🔹 redondeado (puedes ajustar)
                   px: 2,                        // padding horizontal extra
                   mx: 0.5,                      // separación entre botones
