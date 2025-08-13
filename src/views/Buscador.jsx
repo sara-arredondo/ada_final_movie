@@ -1,79 +1,57 @@
-import { useState, useEffect, useContext, useMemo } from "react";
+
 import { Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import BuscadorContainer from "../components/BuscadorContainer";
 import SearchBar from "../components/SearchBar";
 import FullMoviesGrid from "../components/FullMoviesGrid";
-import useMovies from "../hooks/useMovies";
-import { FavoriteContext } from "../context/FavoriteContext";
 import GridSkeletonMovies from "../components/GridSkeletonMovies.jsx";
 
-// Hook pequeño para debouncing
-function useDebouncedValue(value, delay = 400) {
-  const [debounced, setDebounced] = useState(value);
-  useEffect(() => {
-    const t = setTimeout(() => setDebounced(value), delay);
-    return () => clearTimeout(t);
-  }, [value, delay]);
-  return debounced;
-}
-
 export default function Buscador() {
-  const [query, setQuery] = useState("");
-  const [page, setPage] = useState(1);
-  const debouncedQuery = useDebouncedValue(query, 400);
-
-  const navigate = useNavigate();
-  const { favorite, setFavorite } = useContext(FavoriteContext);
-
-  // Reinicia a página 1 cuando cambia la búsqueda
-  useEffect(() => { setPage(1); }, [debouncedQuery]);
-
-  const params = useMemo(
-    () => ({ page, query: debouncedQuery, include_adult: false }),
-    [page, debouncedQuery]
-  );
-
-  const { items: movies, status, error, meta } = useMovies({
-    endpoint: "/search/movie",
-    mode: "card",
-    params,
-  });
-
-  const onCardClick = (id) => navigate(`/movie/${id}`);
-  const isFav = (id) => favorite.some((f) => f.id === id);
-  const onToggleFav = (movie) =>
-    setFavorite((prev) =>
-      prev.some((f) => f.id === movie.id)
-        ? prev.filter((f) => f.id !== movie.id)
-        : [...prev, movie]
-    );
-
   return (
-    <Box sx={{ px: { xs: 2, md: 3 }, py: 3 }}>
-      <SearchBar value={query} onChange={setQuery} autoFocus />
+    <BuscadorContainer>
+      {({
+        query, setQuery,
+        status, error,
+        movies, page, totalPages, setPage,
+        onCardClick, isFav, onToggleFav,
+      }) => {
+        const hasQuery = query.trim().length >= 2;
+        const title = hasQuery ? `Resultados para “${query}”` : "Buscar";
 
-      {debouncedQuery.trim().length < 2 ? (
-        <Typography sx={{ mt: 2, opacity: 0.8 }}>
-          Escribe al menos 2 caracteres para buscar.
-        </Typography>
-      ) : status === "idle" || status === "loading" ? (
-        <GridSkeletonMovies title={`Resultados para “${debouncedQuery || query}”`} items={10} />
-      ) : status === "error" ? (
-        <Typography sx={{ mt: 2, color: "error.main" }}>
-          No se pudo buscar: {error?.message ?? "Error"}
-        </Typography>
-      ) : (
-        <FullMoviesGrid
-          title={`Resultados para “${debouncedQuery}”`}
-          movies={movies}
-          page={meta?.page ?? page}
-          totalPages={meta?.total_pages ?? 1}
-          onPageChange={(_e, value) => setPage(value)}
-          onCardClick={onCardClick}
-          isFav={isFav}
-          onToggleFav={onToggleFav}
-        />
-      )}
-    </Box>
+        return (
+          <Box sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727", minHeight: "100vh", color: "#fff" }}>
+            <SearchBar value={query} onChange={setQuery} autoFocus />
+
+            {hasQuery && (status === "idle" || status === "loading") && (
+  <GridSkeletonMovies title={title} items={10} />
+)}
+
+        {hasQuery && status === "error" && (
+          <Typography sx={{ mt: 2, color: "error.main" }}>
+            No se pudo buscar: {error?.message ?? "Error"}
+          </Typography>
+        )}
+
+        {hasQuery && status !== "idle" && status !== "loading" && !error && (
+          movies?.length ? (
+            <FullMoviesGrid
+              title={title}
+              movies={movies}
+              page={page}
+              totalPages={totalPages}
+              onPageChange={(_e, value) => setPage(value)}
+              onCardClick={onCardClick}
+              isFav={isFav}
+              onToggleFav={onToggleFav}
+            />
+          ) : (
+            <Typography sx={{ mt: 2, opacity: 0.9 }}>
+              No encontramos resultados para “{query}”.
+            </Typography>
+          )
+        )}
+          </Box>
+        );
+      }}
+    </BuscadorContainer>
   );
 }
