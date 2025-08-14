@@ -1,11 +1,10 @@
 import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
 
-export default function GridSkeletonMovies({ title = "Cargando…", items = 10 }) {
+export default function GridSkeletonMovies({ items = 20 }) {
   return (
     <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3 }}>
       {/* Encabezado igual que el de FullMoviesGrid */}
       <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2 }}>
-        <Typography variant="h5" fontWeight={700}>{title}</Typography>
         <Skeleton variant="text" width={120} animation="wave" />
       </Box>
 

@@ -34,8 +34,5 @@ export default function HeroContainer() {
     })();
   }, []);
 
-  if (status === "loading") return <div className="p-6">Cargando…</div>;
-  if (status === "error") return <div className="p-6 text-red-500">No se pudo cargar.</div>;
-
   return <Hero slides={slides} />;
 }
