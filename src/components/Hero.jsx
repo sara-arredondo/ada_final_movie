@@ -43,12 +43,14 @@ export default function Hero ({ slides = [] }) {
                   variant="contained"
                   sx={{
                     mt: 2,
-                    backgroundColor: "#f35a5d",
+                    backgroundColor: "#98c7f3",
                     "&:hover": { backgroundColor: "#d94b4e" },
+                    borderRadius: "20px",
+                    color: "#272727"
                   }}
                   onClick={() => navigate(`/movie/${s.id}`)}
                 >
-                  Ver detalles
+                  Ver detalle
                 </Button>
               </span>
               
