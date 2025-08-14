@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FavoriteContext } from "../context/FavoriteContext";
 import useMovies from "../hooks/useMovies";
 
-/**
- * BuscadorContainer no renderiza UI.
- * Expone la lógica y pasa datos/handlers al hijo (render-prop).
- */
+
 export default function BuscadorContainer({ children }) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
