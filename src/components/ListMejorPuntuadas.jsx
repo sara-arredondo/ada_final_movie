@@ -14,7 +14,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
       <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
         <Typography variant="h6" sx={{
             fontWeight: 600,        // más negrita
-            color: "#fff4b6",       // color personalizado          
+            color: "#e7edf2",       // color personalizado          
         }}>
           Mejor puntuadas</Typography>
       </Box>
@@ -73,7 +73,7 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
                     "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
                   }}
                 >
-                  {isFav(m.id) ? <Favorite htmlColor="#fff4b6" /> : <FavoriteBorder />}
+                  {isFav(m.id) ? <Favorite htmlColor="#f35a5d" /> : <FavoriteBorder />}
                 </IconButton>
 
                 <Typography variant="body2" sx={{ mt: 1 }} noWrap>{m.title}</Typography>

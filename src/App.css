@@ -28,7 +28,7 @@
 .carousel .slide .legend{
   background: transparent;
   box-shadow: none;
-  color: #fff;
+  color: #e7edf2;
 
   right: 2rem; 
   top: 10rem;            /* mueve el bloque hacia la izquierda */
