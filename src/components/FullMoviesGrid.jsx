@@ -20,8 +20,7 @@ export default function FullMoviesGrid({
   return (
     <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727", pt: 7}}>
       <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2, mb: 4 }}>
-        <Typography variant="h5" sx={{color:"#fff4b6", fontWeight:700}}>{title}  </Typography>
-        <Typography variant="body2" sx={{ opacity: 0.7, color:"#fff4b6"}}>
+        <Typography variant="body2" sx={{ opacity: 0.7, color:"#e7edf2"}}>
           Página {page} de {safeTotal}
         </Typography>
       </Box>
@@ -32,10 +31,10 @@ export default function FullMoviesGrid({
           display: "grid",
           gap: 2,
           gridTemplateColumns: {
-            xs: "repeat(2, minmax(0, 1fr))",
-            sm: "repeat(3, minmax(0, 1fr))",
-            md: "repeat(4, minmax(0, 1fr))",
-            lg: "repeat(5, minmax(0, 1fr))",
+            xs: "repeat(3, minmax(0, 1fr))",
+            sm: "repeat(4, minmax(0, 1fr))",
+            md: "repeat(5, minmax(0, 1fr))",
+            lg: "repeat(6, minmax(0, 1fr))",
           },
         }}
       >
@@ -76,7 +75,7 @@ export default function FullMoviesGrid({
                 "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
               }}
             >
-              {isFav(m.id) ? <Favorite htmlColor="#fff4b6" /> : <FavoriteBorder />}
+              {isFav(m.id) ? <Favorite htmlColor="#f35a5d " /> : <FavoriteBorder />}
             </IconButton>
 
             {/* CONTENIDO con altura controlada */}
@@ -89,7 +88,8 @@ export default function FullMoviesGrid({
                 // alto fijo del bloque de contenido para que NO cambie la altura total
                 minHeight: 80,
                 maxHeight: 80,
-                border: "1px solid #fff4b6", // 🔹 borde solo en el texto
+                
+               
                 borderTop: "none",           // 🔹 sin borde arriba
               }}
             >
