@@ -15,6 +15,7 @@ export default function Hero ({ slides = [] }) {
         emulateTouch
         stopOnHover
         useKeyboardArrows
+        showArrows={false}
       >
         {slides.map((s) => (
           <div key={s.id} className="hero-slide">

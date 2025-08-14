@@ -30,7 +30,7 @@
   box-shadow: none;
   color: #e7edf2;
 
-  right: 2rem; 
+  right: 10px; 
   top: 10rem;            /* mueve el bloque hacia la izquierda */
   transform: none;        /* evita el centrado por translateX */
   text-align: left;

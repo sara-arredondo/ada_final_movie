@@ -144,6 +144,7 @@ export default function FullMoviesGrid({
                 "& .MuiPaginationItem-root.Mui-selected": {
                 backgroundColor: "#f35a5d", // fondo seleccionado
                 color: "#272727",              // texto del seleccionado
+                fontWeight: "600"
                 },
                 "& .MuiPaginationItem-root.Mui-selected:hover": {
                 backgroundColor: "#d94e50", // fondo en hover del seleccionado

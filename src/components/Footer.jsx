@@ -8,9 +8,19 @@ function Footer() {
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#272727"}}>
       <AppBar position="static" sx={{ backgroundColor: "#272727", height:'100px', alignItems: 'center' }}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Hecho por Sara Arredondo
+        <Toolbar sx={{
+            display: 'flex',
+            justifyContent: 'center', // Centra en eje X
+            alignItems: 'center',     // Centra en eje Y
+            height: '100%'
+          }}>
+          <Typography variant="body2" component="div" sx={{
+              fontWeight: 'normal', // quita la negrilla
+              fontSize: '1rem',
+              textAlign: 'center',
+              color: '#fff'
+            }}>
+            Hecho por Sara Arredondo para ADA | 2025
           </Typography>
         </Toolbar>
       </AppBar>
