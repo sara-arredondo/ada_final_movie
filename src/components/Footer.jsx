@@ -18,7 +18,7 @@ function Footer() {
               fontWeight: 'normal', // quita la negrilla
               fontSize: '1rem',
               textAlign: 'center',
-              color: '#fff'
+              color: '#98c7f3',
             }}>
             Hecho por Sara Arredondo para ADA | 2025
           </Typography>

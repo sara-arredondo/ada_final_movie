@@ -4,6 +4,7 @@ import BuscadorContainer from "../components/BuscadorContainer";
 import SearchBar from "../components/SearchBar";
 import FullMoviesGrid from "../components/FullMoviesGrid";
 import GridSkeletonMovies from "../components/GridSkeletonMovies.jsx";
+import cineImage from "../assets/cine.svg";
 
 export default function Buscador() {
   return (
@@ -18,12 +19,24 @@ export default function Buscador() {
         const title = hasQuery ? `Resultados para “${query}”` : "Buscar";
 
         return (
+
+          
           <Box sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727", minHeight: "100vh", color: "#fff" }}>
+            
+            <Box sx={{ textAlign: "center", mb: 3 }}>
+              <img
+                src={cineImage}
+                alt="Cine"
+                style={{ maxWidth: "250px", height: "auto" }}
+              />
+            </Box>
+            
+            
             <SearchBar value={query} onChange={setQuery} autoFocus />
 
             {hasQuery && (status === "idle" || status === "loading") && (
-  <GridSkeletonMovies title={title} items={10} />
-)}
+            <GridSkeletonMovies title={title} items={10} />
+            )}
 
         {hasQuery && status === "error" && (
           <Typography sx={{ mt: 2, color: "error.main" }}>
