@@ -139,15 +139,18 @@ export default function FullMoviesGrid({
             boundaryCount={1}
             sx={{
                 "& .MuiPaginationItem-root": {
-                color: "#fff", // color de texto normal
+                color: "#e7edf2", // texto normal
                 },
-                "& .Mui-selected": {
-                backgroundColor: "#fff4b6", // fondo del seleccionado
-                color: "#272727",           // texto del seleccionado
+                "& .MuiPaginationItem-root.Mui-selected": {
+                backgroundColor: "#f35a5d", // fondo seleccionado
+                color: "#272727",              // texto del seleccionado
+                },
+                "& .MuiPaginationItem-root.Mui-selected:hover": {
+                backgroundColor: "#d94e50", // fondo en hover del seleccionado
                 },
                 "& .MuiPaginationItem-root:hover": {
-                backgroundColor: "rgba(255, 244, 182, 0.2)", // hover suave
-                }
+                backgroundColor: "rgba(243, 90, 93, 0.2)", // hover en ítems no seleccionados
+                },
             }}
           />
         </Box>
