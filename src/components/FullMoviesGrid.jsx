@@ -31,7 +31,7 @@ export default function FullMoviesGrid({
           display: "grid",
           gap: 2,
           gridTemplateColumns: {
-            xs: "repeat(3, minmax(0, 1fr))",
+            xs: "repeat(1, minmax(0, 1fr))",
             sm: "repeat(4, minmax(0, 1fr))",
             md: "repeat(5, minmax(0, 1fr))",
             lg: "repeat(6, minmax(0, 1fr))",
