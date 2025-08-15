@@ -7,7 +7,7 @@ const Home = () => (
   <Box
     sx={{
       backgroundColor: '#272727', // fondo negro
-      color: '#fff',           // texto blanco
+      color: '#e7edf2',
       minHeight: '100vh',      // ocupa toda la altura de la pantalla
     }}
   >
