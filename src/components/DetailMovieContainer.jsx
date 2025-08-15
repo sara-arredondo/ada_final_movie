@@ -19,9 +19,9 @@ export default function DetailMovieContainer() {
     );
   };
 
-  if (status === "idle" || status === "loading") return <Box p={3}>Cargando…</Box>;
-  if (status === "error") return <Box p={3} color="error.main">No se pudo cargar: {error?.message ?? "Error"}</Box>;
-  if (!movie) return <Box p={3}>No encontrado.</Box>;
-
-  return <DetailMovie movie={movie} isFav={isFav} onToggleFav={onToggleFav} />;
+  return <DetailMovie 
+    movie={movie} 
+    isFav={isFav} 
+    status={status}
+    onToggleFav={onToggleFav} />;
 }
