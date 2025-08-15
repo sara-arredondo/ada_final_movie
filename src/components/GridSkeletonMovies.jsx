@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material";
+import { Box, Card, CardContent, Skeleton } from "@mui/material";
 
 export default function GridSkeletonMovies({ items = 20 }) {
   return (
