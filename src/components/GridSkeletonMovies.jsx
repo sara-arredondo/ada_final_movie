@@ -30,7 +30,7 @@ export default function GridSkeletonMovies({ items = 20 }) {
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
-              height: "100%",
+              height: 430,
             }}
           >
             {/* PÓSTER con MISMO aspect-ratio 2:3 */}
