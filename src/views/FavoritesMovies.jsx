@@ -16,7 +16,7 @@ export default function FavoritesMovies() {
   const onToggleFav = (movie) =>
     setFavorite((prev) =>
       prev.some((f) => f.id === movie.id)
-        ? prev.filter((f) => f.id !== movie.id) : [...prev, movie]
+        ? prev.filter((f) => f.id !== movie.id): [...prev, movie]
     );
 
   if (!favorite || favorite.length === 0) {
@@ -42,7 +42,7 @@ export default function FavoritesMovies() {
             alt="Cine"
             style={{
               maxWidth: "250px",
-              height: "auto" }}
+              height: "250px" }}
           />
         </Box>
 
