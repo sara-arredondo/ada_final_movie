@@ -57,7 +57,14 @@ export default function FavoritesMovies() {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => navigate("/PopularMovies")} 
+          onClick={() => navigate("/PopularMovies")}
+          sx={{
+            mt: 2,
+            backgroundColor: "#98c7f3",
+            "&:hover": { backgroundColor: "#d94b4e" },
+            borderRadius: "20px",
+            color: "#272727"
+          }}
         >
           Ir a explorar películas
         </Button>
