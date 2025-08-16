@@ -3,25 +3,27 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-export default function ListPopularMovies({
-  movies = [],
-  isFav = () => false,
-  onToggleFav,
-  onCardClick,
-}) {
+export default function ListPopularMovies({ movies = [], isFav = () => false, onToggleFav, onCardClick, }) {
   return (
-    <Box component="section" sx={{ py: 3, mt: 4 }}>
-      <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
+    <Box 
+      component="section"
+      sx={{ py: 3, mt: 4 }}>
+      <Box
+        sx={{
+          px: 4, display: "flex",
+          justifyContent: "space-between",
+          mb: 1 }}>
         <Typography variant="h6" sx={{
-            fontWeight: 600,        // más negrita
-            color: "#e7edf2",       // color personalizado
-        }}>Últimos lanzamientos</Typography>
-        
+            fontWeight: 600,        
+            color: "#e7edf2",      
+        }}>Últimos lanzamientos
+        </Typography> 
       </Box>
 
       <Box
@@ -30,8 +32,7 @@ export default function ListPopularMovies({
           p: { xs: 1, sm: 2 },
           overflow: "hidden",
           position: "relative",
-          // Estilos internos de Swiper
-          "& .swiper-button-prev, & .swiper-button-next": { color: "#fff" },
+          "& .swiper-button-prev, & .swiper-button-next": { color: "#e7edf2" },
         }}
       >
         <Swiper
@@ -44,7 +45,7 @@ export default function ListPopularMovies({
           {movies.map((m) => (
             <SwiperSlide key={m.id}>
               <Box sx={{ position: "relative" }}>
-                {/* Imagen clickeable */}
+                {/* Imagen a la que se le puede hacer click */}
                 <Box
                   role="button"
                   tabIndex={0}

@@ -1,8 +1,8 @@
 // ListMoviesContainer.jsx
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import useMovies from "../hooks/useMovies";
 import { FavoriteContext } from "../context/FavoriteContext";
+import useMovies from "../hooks/useMovies";
 
 import ListPopularMovies from "./ListPopularMovies";
 import ListMejorPuntuadas from "./ListMejorPuntuadas";
@@ -33,7 +33,6 @@ export default function ListMoviesContainer() {
     );
   };
 
-  // 👉 Loading solo mientras alguno esté arrancando o cargando
   const isLoading =
     statusPopular === "idle" || statusPopular === "loading" ||
     statusTop === "idle" || statusTop === "loading";

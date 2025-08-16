@@ -104,7 +104,7 @@ function NavBar() {
               PaperProps={{
                 sx: {
                   backgroundColor: "#272727", // ← Fondo oscuro
-                  color: "#fff",              // ← Texto blanco
+                  color: "#e7edf2",              // ← Texto blanco
                 },
   }}
             >
