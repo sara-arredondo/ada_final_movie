@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,120 +11,165 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Home', 'Últimos Lanzamientos', 'Populares', 'Buscar Pelicula'];
+import logoUrl from "../assets/logo.svg";
+
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Últimos Lanzamientos', path: '/UltimosLanzamientos' },
+  { label: 'Populares', path: '/PopularMovies' },
+  { label: 'Favoritos', path: '/favoritos' },
+  { label: 'Buscar Película', path: '/buscador' },
+];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const location = useLocation();
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
+      <Container maxWidth="xl" sx={{ backgroundColor: "#272727" }}>
+        <Toolbar
+          disableGutters
+          sx={{
+            minHeight: { xs: 60, md: 90 },
+            alignItems: "center" }}
+        >
+          {/* Logo */}
+          <Box
+            component={Link}
+            to="/"
             sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1.25,
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              textDecoration: "none",
+              color: "inherit",
+              flexShrink: 0
             }}
           >
-            LOGO
-          </Typography>
+            <Box
+              component="img"
+              src={logoUrl}
+              alt="PICK"
+              sx={{
+                width: { xs: 28, md: 48 },
+                height: { xs: 28, md: 48 } }} />
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Typography
+              component="span"
+              sx={{
+                fontFamily: '"Bebas Neue", sans-serif',
+                fontSize: { xs: 20, md: 48 },
+                fontWeight: 700,
+                color: "#f35a5d",
+                lineHeight: 1,
+                letterSpacing: ".04em",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              PICK
+            </Typography>
+          </Box>
+
+          {/* alinear el icono a la derecha en mobile */}
+          <Box sx={{ flexGrow: 1 }} />
+
+          {/* --- menu hamburguesae--- */}
+          <Box sx={{
+            display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{ color: '#98c7f3' }}
             >
               <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+              keepMounted
+              PaperProps={{
+                sx: {
+                  backgroundColor: "#272727", // ← Fondo oscuro
+                  color: "#e7edf2",              // ← Texto blanco
+                },
+  }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
+              {pages.map((p) => {
+                const isActive = location.pathname === p.path;
+                return (
+                  <MenuItem
+                    key={p.path}
+                    component={Link}
+                    to={p.path}
+                    onClick={handleCloseNavMenu}
+                    selected={isActive}
+                    sx={{
+                      "&.Mui-selected": { bgcolor: "#f35a5d", color: "#272727" },
+                      "&.Mui-selected:hover": { bgcolor: "#d94b50" }
+                    }}
+                  >
+                    <Typography textAlign="center">{p.label}</Typography>
+                  </MenuItem>
+                );
+              })}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
 
+          {/* --- menu escritorio */}
+          <Box
+          sx={{
+            flexGrow: 0,
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'flex-end'
+            }}>
+
+            {pages.map((p) => {
+              const isActive = location.pathname === p.path;
+              return (
+                <Button
+                  key={p.path}
+                  component={Link}
+                  to={p.path}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: isActive ? '#f35a5d' : '#98c7f3',
+                    border: `1px solid ${isActive ? '#f35a5d' : '#98c7f3'}`,
+                    display: 'block',
+                    textTransform: 'none',
+                    fontWeight: 300,
+                    borderRadius: '20px',
+                    px: 2,
+                    mx: 0.5,
+                    '&:hover': {
+                      color: '#f35a5d',
+                      borderColor: '#f35a5d',
+                    },
+                  }}
+                >
+                  {p.label}
+                </Button>
+              );
+            })}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default NavBar;

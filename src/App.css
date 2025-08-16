@@ -1,0 +1,61 @@
+.hero-slide {
+  position: relative;
+}
+
+.hero-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-slide::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  z-index: 20; /* pata ponerlo por encima de la imagen */
+  pointer-events: none;
+}
+
+.hero-slide .legend {
+  position: relative;
+  z-index: 999; /* y este por encima del gradiente, pero no funciona, el gradiente no se ve */
+}
+
+.carousel .slide .legend{
+  background: transparent;
+  box-shadow: none;
+  color: #e7edf2;
+
+  right: 10px; 
+  top: 10rem;           
+  transform: none;      
+  text-align: left;
+  max-width: 900px;  
+}
+
+/* Alinea a la izquierda el legend*/
+.hero-legend{
+  display: inline-block;         /* se comporta como “bloque” centrable */
+  text-align: left;              /* texto a la izquierda */
+  margin-left: 1rem;             /* separarlo del borde */
+  max-width: min(70ch, 60%);     /* ancho legible (ajusta a gusto) */
+}
+
+/* Tamaños de texto */
+.hero-title{
+  display: block;
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 32px);
+  margin-bottom: .25rem;
+}
+
+.hero-desc{
+  display: block;
+  font-size: clamp(12px, 1.4vw, 16px);
+  line-height: 1.4;
+  opacity: .9;
+}

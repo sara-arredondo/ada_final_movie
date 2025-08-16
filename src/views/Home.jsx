@@ -1,9 +1,19 @@
-import React from 'react'
-import HeroContainer from '../components/HeroContainer'
+import React from 'react';
+import { Box } from '@mui/material';
+import HeroContainer from '../components/HeroContainer';
+import ListMoviesContainer from '../components/ListMoviesContainer';
 
-const Home = () => {
-  return <HeroContainer />;
-  
-}
+const Home = () => (
+  <Box
+    sx={{
+      backgroundColor: '#272727', // fondo negro
+      color: '#e7edf2',
+      minHeight: '100vh',      // ocupa toda la altura de la pantalla
+    }}
+  >
+    <HeroContainer />
+    <ListMoviesContainer />
+  </Box>
+);
 
-export default Home
+export default Home;

@@ -1,9 +1,17 @@
+import FullMoviesContainer from "../components/FullMoviesContainer";
 
+import { Box } from "@mui/material";   
 
-const FullPopularMovies = () => {
+export default function FullPopularMovies() {
   return (
-    <div>FullPopularMovies</div>
-  )
+    <Box
+      sx={{
+        bgcolor: "#272727",
+        minHeight: "100vh" }}>
+        <FullMoviesContainer
+          endpoint="/movie/popular"
+          title="Películas populares"
+        />
+      </Box>
+  );
 }
-
-export default FullPopularMovies
