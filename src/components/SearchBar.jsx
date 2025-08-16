@@ -36,7 +36,7 @@ export default function SearchBar({ value, onChange, autoFocus = false }) {
       label="Buscar película"
       placeholder="Ej: Dune, Batman…"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+       onChange={(e) => onChange(e.target.value)}
       autoFocus={autoFocus}
     />
   );

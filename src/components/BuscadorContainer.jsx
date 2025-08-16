@@ -1,5 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { FavoriteContext } from "../context/FavoriteContext";
 import useMovies from "../hooks/useMovies";
 
