@@ -3,40 +3,35 @@ import { TextField } from "@mui/material";
 export default function SearchBar({ value, onChange, autoFocus = false }) {
   return (
     <TextField
-
-    slotProps={{
+      slotProps={{
         inputLabel: {
         sx: {
-            color: "white",
-            "&.Mui-focused": {
+          color: "white", "&.Mui-focused": {
             color:'#f35a5d',
-            }
+          }
         }
         },
         input: {
-        sx: {
+          sx: {
             color: "white"
+          }
         }
-        }
-    }}
+      }}
     
-    
-    sx={{
+      sx={{
         '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-             borderColor: '#f35a5d',
-        },
-        '&:hover fieldset': {
-            borderColor: '#98c7f3',
-        },
-        '&.Mui-focused fieldset': {
+          '& fieldset': {
             borderColor: '#f35a5d',
+          },
+          '&:hover fieldset': {
+            borderColor: '#98c7f3',
+          },
+          '&.Mui-focused fieldset': {
+            borderColor: '#f35a5d',
+          },
         },
-        
-        },
-        }}
-
-        
+      }}
+ 
       fullWidth
       label="Buscar película"
       placeholder="Ej: Dune, Batman…"
