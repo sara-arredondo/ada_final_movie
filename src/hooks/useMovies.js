@@ -27,7 +27,7 @@ const mapToCard = (results) =>
 
 export default function useMovies({ endpoint, params = {}, mode = "card" }) {
   const [items, setItems] = useState([]);
-  const [status, setStatus] = useState("idle");   // 'idle' | 'loading' | 'ready' | 'error'
+  const [status, setStatus] = useState("idle");   // 'idle'valor inicial de estado que tú defines para indicar que todavía no se ha empezado ninguna carga.
   const [error, setError] = useState(null);
   const [meta, setMeta] = useState({ page: 1, total_pages: 1, total_results: 0 });
 
