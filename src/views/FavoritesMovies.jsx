@@ -4,6 +4,8 @@ import { Box, Typography, Button } from "@mui/material";
 
 import { FavoriteContext } from "../context/FavoriteContext";
 import FullMoviesGrid from "../components/FullMoviesGrid";
+import cineImage from "../assets/cine.svg";
+
 
 export default function FavoritesMovies() {
   const { favorite, setFavorite } = useContext(FavoriteContext);
@@ -14,8 +16,7 @@ export default function FavoritesMovies() {
   const onToggleFav = (movie) =>
     setFavorite((prev) =>
       prev.some((f) => f.id === movie.id)
-        ? prev.filter((f) => f.id !== movie.id)
-        : [...prev, movie]
+        ? prev.filter((f) => f.id !== movie.id) : [...prev, movie]
     );
 
   if (!favorite || favorite.length === 0) {
@@ -32,6 +33,19 @@ export default function FavoritesMovies() {
           flexDirection: "column",
         }}
       >
+        <Box 
+          sx={{
+            textAlign: "center",
+            mb: 3 }}>
+          <img
+            src={cineImage}
+            alt="Cine"
+            style={{
+              maxWidth: "250px",
+              height: "auto" }}
+          />
+        </Box>
+
         <Typography
           variant="h6"
           sx={{
