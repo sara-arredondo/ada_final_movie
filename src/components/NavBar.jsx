@@ -101,6 +101,12 @@ function NavBar() {
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
               transformOrigin={{ vertical: 'top', horizontal: 'right' }}
               keepMounted
+              PaperProps={{
+                sx: {
+                  backgroundColor: "#272727", // ← Fondo oscuro
+                  color: "#fff",              // ← Texto blanco
+                },
+  }}
             >
               {pages.map((p) => {
                 const isActive = location.pathname === p.path;
@@ -112,7 +118,7 @@ function NavBar() {
                     onClick={handleCloseNavMenu}
                     selected={isActive}
                     sx={{
-                      "&.Mui-selected": { bgcolor: "#f35a5d", color: "#fff" },
+                      "&.Mui-selected": { bgcolor: "#f35a5d", color: "#272727" },
                       "&.Mui-selected:hover": { bgcolor: "#d94b50" }
                     }}
                   >
