@@ -42,6 +42,5 @@ export default function BuscadorContainer({ children }) {
     onToggleFav,
   };
 
-  // Entrega todo a la vista
   return typeof children === "function" ? children(api) : null;
 }

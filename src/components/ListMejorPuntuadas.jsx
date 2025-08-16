@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -13,8 +14,8 @@ export default function ListMejorPuntuadas({ movies=[], isFav=()=>false, onToggl
     <Box component="section" sx={{ py: 3 }}>
       <Box sx={{ px: 4, display: "flex", justifyContent: "space-between", mb: 1 }}>
         <Typography variant="h6" sx={{
-            fontWeight: 600,        // más negrita
-            color: "#e7edf2",       // color personalizado          
+            fontWeight: 600,        
+            color: "#e7edf2",               
         }}>
           Mejor puntuadas</Typography>
       </Box>

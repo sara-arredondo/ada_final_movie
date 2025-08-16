@@ -10,12 +10,12 @@ function Footer() {
       <AppBar position="static" sx={{ backgroundColor: "#272727", height:'100px', alignItems: 'center' }}>
         <Toolbar sx={{
             display: 'flex',
-            justifyContent: 'center', // Centra en eje X
-            alignItems: 'center',     // Centra en eje Y
+            justifyContent: 'center', 
+            alignItems: 'center',    
             height: '100%'
           }}>
           <Typography variant="body2" component="div" sx={{
-              fontWeight: 'normal', // quita la negrilla
+              fontWeight: 'normal', 
               fontSize: '1rem',
               textAlign: 'center',
               color: '#98c7f3',

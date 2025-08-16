@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Box } from "@mui/material";
-import useMovieDetail from "../hooks/useMovieDetail"; // asegúrate de que el archivo exista
 import { FavoriteContext } from "../context/FavoriteContext";
-import DetailMovie from "../views/DetailMovie";               // UI presentacional con el popup
+
+import useMovieDetail from "../hooks/useMovieDetail"; 
+import DetailMovie from "../views/DetailMovie";               
 
 export default function DetailMovieContainer() {
   const { id } = useParams();

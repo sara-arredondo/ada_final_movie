@@ -1,31 +1,37 @@
-import {
-  Box, Card, CardActionArea, CardMedia, CardContent,
-  Typography, IconButton, Pagination
-} from "@mui/material";
+import { Box, Card, CardActionArea, CardMedia, CardContent, Typography, IconButton, Pagination } from "@mui/material";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 
-export default function FullMoviesGrid({
-  title,
-  movies = [],
-  page = 1,
-  totalPages = 1,
-  onPageChange,
-  onCardClick,
-  isFav = () => false,
-  onToggleFav,
-}) {
+export default function FullMoviesGrid({ title, movies = [], page = 1, totalPages = 1, onPageChange, onCardClick, isFav = () => false, onToggleFav, }) {
   const safeTotal = Math.min(totalPages || 1, 500);
 
   return (
-    <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3, bgcolor: "#272727", pt: 7}}>
-      <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2, mb: 4 }}>
-        <Typography variant="body2" sx={{ opacity: 0.7, color:"#e7edf2"}}>
+    <Box
+      component="main"
+      sx={{
+        px: { xs: 2, md: 3 },
+        py: 3,
+        bgcolor: "#272727",
+        pt: 7
+      }}>
+
+      <Box
+        sx={{
+          mb: 2,
+          display: "flex",
+          alignItems: "baseline",
+          gap: 2,
+          mb: 4
+        }}>
+        <Typography
+          variant="body2"
+          sx={{
+            opacity: 0.7,
+            color:"#e7edf2"}}>
           Página {page} de {safeTotal}
         </Typography>
       </Box>
 
-      {/* GRID: 5 columnas en desktop */}
       <Box
         sx={{
           display: "grid",
@@ -49,10 +55,9 @@ export default function FullMoviesGrid({
               height: "100%", // para que todas llenen su celda
               borderRadius: 0,
               bgcolor: "#272727",
-              color: "#fff",
+              color: "#e7edf2",
             }}
           >
-            {/* IMAGEN con altura fija relativa al ancho (2:3) */}
             <CardActionArea onClick={() => onCardClick?.(m.id)}>
               <CardMedia
                 component="img"
@@ -63,45 +68,38 @@ export default function FullMoviesGrid({
               />
             </CardActionArea>
 
-            {/* CORAZÓN */}
             <IconButton
               size="small"
               onClick={(e) => { e.stopPropagation(); onToggleFav?.(m); }}
               aria-label={isFav(m.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
               sx={{
-                position: "absolute", top: 8, right: 8,
-               
-                color: "#fff",
-                "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
+                position: "absolute",
+                top: 8,
+                right: 8,
+                color: "#e7edf2", "&:hover": { bgcolor: "rgba(0,0,0,.8)" },
               }}
             >
               {isFav(m.id) ? <Favorite htmlColor="#f35a5d " /> : <FavoriteBorder />}
             </IconButton>
 
-            {/* CONTENIDO con altura controlada */}
             <CardContent
               sx={{
                 py: 1.5,
                 display: "flex",
                 flexDirection: "column",
                 gap: 0.5,
-                // alto fijo del bloque de contenido para que NO cambie la altura total
                 minHeight: 80,
                 maxHeight: 80,
-                
-               
-                borderTop: "none",           // 🔹 sin borde arriba
+                borderTop: "none",           
               }}
             >
-              {/* Título: muestra hasta donde alcance, luego “…” sin crecer la card */}
               <Typography
                 variant="body2"
                 sx={{
                   display: "-webkit-box",
-                  WebkitLineClamp: { xs: 2, md: 2 }, // 2 líneas (puedes subir a 3 si quieres)
+                  WebkitLineClamp: { xs: 2, md: 2 }, 
                   WebkitBoxOrient: "vertical",
                   overflow: "hidden",
-                  // 2 líneas ≈ 2.6em de alto (ajusta si cambias el tamaño de fuente)
                   minHeight: "2.6em",
                 }}
                 title={m.title}
@@ -139,11 +137,11 @@ export default function FullMoviesGrid({
             boundaryCount={1}
             sx={{
                 "& .MuiPaginationItem-root": {
-                color: "#e7edf2", // texto normal
+                color: "#e7edf2", //
                 },
                 "& .MuiPaginationItem-root.Mui-selected": {
-                backgroundColor: "#f35a5d", // fondo seleccionado
-                color: "#272727",              // texto del seleccionado
+                backgroundColor: "#f35a5d", 
+                color: "#272727",  // texto del seleccionado
                 fontWeight: "600"
                 },
                 "& .MuiPaginationItem-root.Mui-selected:hover": {

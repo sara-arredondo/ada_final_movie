@@ -3,12 +3,10 @@ import { Box, Card, CardContent, Skeleton } from "@mui/material";
 export default function GridSkeletonMovies({ items = 20 }) {
   return (
     <Box component="main" sx={{ px: { xs: 2, md: 3 }, py: 3 }}>
-      {/* Encabezado igual que el de FullMoviesGrid */}
       <Box sx={{ mb: 2, display: "flex", alignItems: "baseline", gap: 2 }}>
         <Skeleton variant="text" width={120} animation="wave" />
       </Box>
 
-      {/* MISMAS COLUMNAS que FullMoviesGrid */}
       <Box
         sx={{
           display: "grid",
@@ -33,14 +31,12 @@ export default function GridSkeletonMovies({ items = 20 }) {
               height: 430,
             }}
           >
-            {/* PÓSTER con MISMO aspect-ratio 2:3 */}
             <Skeleton
               variant="rectangular"
               animation="wave"
               sx={{ width: "100%", aspectRatio: "2 / 3" }}
             />
 
-            {/* BLOQUE DE CONTENIDO con MISMA altura fija que tus cards */}
             <CardContent
               sx={{
                 py: 1.5,
@@ -55,7 +51,6 @@ export default function GridSkeletonMovies({ items = 20 }) {
         ))}
       </Box>
 
-      {/* (Opcional) placeholder de paginación para evitar saltos */}
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         <Skeleton variant="rounded" width={280} height={32} animation="wave" />
       </Box>
