@@ -30,8 +30,8 @@ function NavBar() {
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl" sx={{ backgroundColor: "#272727" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#272727" }}>
+      <Container maxWidth="xl">
         <Toolbar
           disableGutters
           sx={{
