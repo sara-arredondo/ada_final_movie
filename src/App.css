@@ -37,12 +37,18 @@
   max-width: 900px;  
 }
 
+@media (max-width: 640px) {
+  .carousel .slide .legend {
+    top: 1rem ;   
+    bottom: auto ;  
+  }
+}
+
 /* Alinea a la izquierda el legend*/
 .hero-legend{
-  display: inline-block;         /* se comporta como “bloque” centrable */
-  text-align: left;              /* texto a la izquierda */
-  margin-left: 1rem;             /* separarlo del borde */
-  max-width: min(70ch, 60%);     /* ancho legible (ajusta a gusto) */
+  display: inline-block;        
+  text-align: left;             
+  margin-left: 1rem;             /* ancho legible (ajusta a gusto) */
 }
 
 /* Tamaños de texto */
